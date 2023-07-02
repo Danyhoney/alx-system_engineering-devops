@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Tries to kill a long-running program
+pkill -f "./7-highlander"
