@@ -1,3 +1,6 @@
 #!/usr/bin/env bash
-# display all active ipv4 ips
-ifconfig | grep "inet addr" | cut -f2 -d " " | cut -f1 -d ":"
+# Displays all active IPV4 IPs
+# Method 1
+# ip -4 -br address | grep -oE '([0-9]+\.?){4}'
+# Method 2
+ifconfig | grep -oE 'inet [0-9]+(\.[0-9]+){3}' | cut -f2 -d ' '
