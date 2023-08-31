@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# Installs, configures, and starts the server
+
+# Update package repositories and install nginx
+apt-get update
+apt-get -y install nginx
+
+# Allow Nginx through the firewall
+sudo ufw allow 'Nginx HTTP'
+
+# Create the HTML directory and set permissions
+mkdir -p /var/www/html/
+chmod -R 755 /var/www
+
+# Create the index.html file
+echo 'Hello World!' > /var/www/html/index.html
+
+# Define the server block configuration
+SERVER_CONFIG="server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    root /var/www/html;
+    index index.html index.htm index.nginx-debian.html;
+    server_name _;
+    location / {
+        try_files \$uri \$uri/ =404;
+    }
+    location /redirect_me {
+        rewrite ^ https://sketchfab.com/bluepeno/models permanent;
+    }
+}"
+
+# Echo the server configuration to the default server block
+echo "$SERVER_CONFIG" > /etc/nginx/sites-enabled/default
+
+# Check if nginx is running and start or restart accordingly
+if [ "$(pgrep -c nginx)" -le 0 ]; then
+    service nginx start
+else
+    service nginx restart
+fi
