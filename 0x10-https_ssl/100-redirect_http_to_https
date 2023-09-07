@@ -33,20 +33,20 @@ defaults
 	errorfile 503 /etc/haproxy/errors/503.http
 	errorfile 504 /etc/haproxy/errors/504.http
 
-#--danyhoney-alx.tech-params-begin--
-frontend danyhoney-alx.tech-http-frontend
+#--official0mega-alx.tech-params-begin--
+frontend official0mega-alx.tech-http-frontend
 	bind *:80
 	redirect scheme https code 301 if !{ ssl_fc }
 	http-request set-header X-Forwarded-Proto http
 	default_backend official0mega-alx.tech-backend
 
-frontend danyhoney-alx.tech-https-frontend
+frontend official0mega-alx.tech-https-frontend
 	bind *:443 ssl crt /etc/ssl/official0mega-alx.tech/official0mega-alx.tech.pem
 	http-request set-header X-Forwarded-Proto https
 	default_backend official0mega-alx.tech-backend
 
-backend danyhoney-alx.tech-backend
+backend official0mega-alx.tech-backend
 	balance roundrobin
 	server web01 52.206.85.67 check
 	server web02 52.91.209.215 check
-#--danyhoney-alx.tech-params-end--
+#--official0mega-alx.tech-params-end--
