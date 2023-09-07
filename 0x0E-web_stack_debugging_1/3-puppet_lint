@@ -1,0 +1,22 @@
+# Install Puppet-lint (if not already installed):
+
+gem install puppet-lint
+# This will install puppet-lint and make it available in your system.
+# Navigate to the Directory: Use the cd command to navigate to the directory containing the Puppet manifests that you want to check with puppet-lint.
+
+# Run Puppet-lint: Run puppet-lint with the desired options and specify the manifest files or directories you want to lint. For example:
+
+puppet-lint my_manifest.pp
+
+# Replace my_manifest.pp with the actual names of the manifest files you want to lint.
+# You can also specify multiple files or directories:
+
+puppet-lint manifest_directory/ another_manifest.pp
+
+# puppet-lint will analyze your Puppet code and report any style or formatting issues it finds.
+# Review and Address the Issues: After running puppet-lint, it will provide feedback on any problems detected in your Puppet code. Review the output, and if there are any issues reported, address them according to Puppet best practices.
+
+* Common issues may include indentation errors, missing comments, incorrect variable naming, or other style violations.
+# Repeat as Needed: If you have multiple Puppet manifests or directories, you can repeat the puppet-lint command for each one to ensure that all of your Puppet code adheres to best practices.
+
+# Complete the Task: Once you have run puppet-lint and addressed any issues it found, you can consider the task completed.

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# Debug and fix the Nginx server to return a page with a custom HTTP response header
+
+# Add the custom HTTP response header
+sudo sed -i '/server_name _/a add_header X-Served-By $HOSTNAME;' /etc/nginx/sites-available/default
+
+# Restart Nginx
+sudo service nginx restart

@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+# Add additional Nginx server configurations for high availability
+
+# Backup the default Nginx configuration
+sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.bak
+
+# Add additional server configurations for high availability
+cat <<EOF | sudo tee /etc/nginx/sites-available/default
+server {
+    listen 80;
+    server_name _;
+    access_log /var/log/nginx/access.log;
+
+    location / {
+        proxy_pass http://backend;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+
+upstream backend {
+    server [STUDENT_ID]-web-01;
+    server [STUDENT_ID]-web-02;
+}
+EOF
+
+# Restart Nginx
+sudo service nginx restart
